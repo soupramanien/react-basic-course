@@ -1,0 +1,15 @@
+[submodule "react-router-v5-example-app"]
+	path = react-router-v5-example-app
+	url = https://github.com/soupramanien/react-router-v5-example-app.git
+[submodule "iterator-generator-js-example"]
+	path = iterator-generator-js-example
+	url = https://github.com/soupramanien/iterator-generator-js-example.git
+[submodule "redux-saga-simple-example"]
+	path = redux-saga-simple-example
+	url = https://github.com/soupramanien/redux-saga-simple-example.git
+[submodule "redux-saga-complex-example"]
+	path = redux-saga-complex-example
+	url = https://github.com/soupramanien/redux-saga-complex-example.git
+[submodule "Oxiane-reactjs-productapp-december-2021"]
+	path = Oxiane-reactjs-productapp-december-2021
+	url = https://github.com/soupramanien/Oxiane-reactjs-productapp-december-2021.git
