@@ -31,7 +31,8 @@ export function getData(url) {
                 }
             })
             .then((data) => {
-                setTimeout(() => { resolve(data) }, 5000)
+                // setTimeout(() => { resolve(data) }, 5000)
+                resolve(data)
 
             })
             .catch((error) => {

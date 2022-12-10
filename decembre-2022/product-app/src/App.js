@@ -1,19 +1,11 @@
-import { useState } from 'react';
 import './App.css';
-import DemoHook from './hooks/DemoHook';
-import Users from './hooks/Users';
-import ProductDisplay from './product/ProductDisplay';
+import { Link, Outlet } from 'react-router-dom';
 
 function App() {
-  const [showPosts, setShowPosts] = useState(false);
   return (
     <>
-      <Users />
-      <button
-        onClick={() => setShowPosts((oldVal) => !oldVal)}>
-        {showPosts ? "Afficher produits" : "Afficher posts"}
-      </button>
-      {showPosts ? <DemoHook /> : <ProductDisplay />}
+      <Link to='/products'>Products</Link>
+      <Outlet />
     </>
   );
 }

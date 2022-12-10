@@ -1,8 +1,26 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { addProduct } from "../redux/actionCreators";
+import { selectProductById } from "../redux/selectors";
 
-export default function ProductFormWithHook(props) {
-    const [name, setName] = useState(props.product.name);
-    const [price, setPrice] = useState(props.product.price);
+export default function ProductFormWithHook() {
+    //Returns an object of key/value pairs of the dynamic params from the current URL
+    const params = useParams()
+    //Returns redux store's dispatch function
+    const dispatch = useDispatch()
+    //Returns an imperative method for changing the location
+    const navigate = useNavigate()
+    //returns the matched producted from redux store
+    let product = useSelector(selectProductById(parseInt(params.productId)));
+    if (!product) {
+        product = {
+            name: "",
+            price: undefined
+        }
+    }
+    const [name, setName] = useState(product.name);
+    const [price, setPrice] = useState(product.price);
     const methodMap = { name: setName, price: setPrice }
     const handleChange = (event) => {
         methodMap[event.target.id](event.target.value);
@@ -15,10 +33,10 @@ export default function ProductFormWithHook(props) {
     }
     const handleAdd = (event) => {
         event.preventDefault();
-        props.handleAdd({
-            name: name,
-            price: price
-        });
+        product.name = name
+        product.price = price
+        dispatch(addProduct(product))
+        navigate("/products")
     }
     return (
         <form>
@@ -31,7 +49,7 @@ export default function ProductFormWithHook(props) {
                 <input type="text" id="price" value={price} onChange={handleChange} />
             </div>
             <div>
-                <input type="submit" value="Ajouter" onClick={handleAdd} />
+                <input type="submit" value={product.id ? "modifier" : "Ajouter"} onClick={handleAdd} />
             </div>
         </form>
     )

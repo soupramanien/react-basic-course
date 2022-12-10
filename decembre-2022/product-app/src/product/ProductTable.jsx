@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux"
+import { selectAllProducts } from "../redux/selectors"
 import ProductTableItem from "./ProductTableItem"
 
-export default function ProductTable({ products, handleDelete }) {
-    if (products.length === 0) {
+export default function ProductTable() {
+    // const products = useSelector(state => state.product.products)
+    const products = useSelector(selectAllProducts())
+    if (!products || products.length === 0) {
         return <p>La liste est vide !</p>
     }
     return (
@@ -20,7 +24,6 @@ export default function ProductTable({ products, handleDelete }) {
                         <ProductTableItem
                             key={product.id}
                             product={product}
-                            handleDelete={handleDelete}
                         />
                     )
                 })}
